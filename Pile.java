@@ -5,5 +5,9 @@ public class Pile {
         for (int i : test1) {
             System.out.print (i + " ");
         }
+        MyHeap.heapSort(test1);
+        for (int i : test1) {
+            System.out.print (i + " ");
+        }
     }
 }
