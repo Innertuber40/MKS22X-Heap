@@ -25,29 +25,26 @@ public class MyHeap {
 		heap[ind2] = value;
 	}
 
-	private static void heapifyhelp(int[] heap, int max) {
+	public static void heapify(int[] heap) {
 		int levels;
 		int exp = 0;
-		while (Math.pow(2, exp + 1) < max) {
+		while (Math.pow(2, exp + 1) < heap.length) {
 			exp++;
 		}
 		levels = (int)Math.pow(2, exp) - 2;
 		for (int index = levels; index >= 0; index--) {
-			pushDown(heap, max, index);
+			pushDown(heap, heap.length, index);
 			/*for (int i : heap) {
 				System.out.print(i + " ");
 			}
 			System.out.println();*/
 		}
 	}
-
-	public static void heapify(int[] heap) {
-		heapifyhelp(heap, heap.length);
-	}
 	public static void heapSort(int[] heap) {
-		for (int index = heap.length; index > 0; index--) {
-			heapifyhelp(heap, index);
-			swap(heap, 0, index - 1);
+		heapify(heap);
+		for (int index = heap.length - 1; index >= 0; index--) {
+			swap(heap, 0, index);
+			pushDown(heap, index, 0);
 		}
 	}
 }
